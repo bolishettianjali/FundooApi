@@ -17,7 +17,7 @@ class Usercontrol{
     async loginUser(req,res){
         console.log(req.body);
         await service.loginService(req.body).then((result) => {
-            res.status(200).json( result )
+            res.status(200).json(result )
         }).catch((err => {
             return res.status(400).send(err);
         }))

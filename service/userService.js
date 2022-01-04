@@ -26,45 +26,48 @@ let foundUser = await userModel.findUser(req);
             console.log("fnd" ,foundUser);
             return foundUser;
         }
-    }
-async loginService(req,res){
+}
+async loginService(req){
     let findUser = await userModel.findUser({email:req.email});
-    console.log()
-    if (findUser.data) {
-        let passwordVerify = await bcrypt.compare(req.password, findUser.data.password)
+    console.log(findUser.data.length,"value")
+    if (findUser.data.length>0) {
+        console.log("inside iff",req.password,findUser.data[0].password);
+        let passwordVerify = await bcrypt.compare(req.password, findUser.data[0].password)
+        console.log(passwordVerify,"verification");
         if (passwordVerify) {
            
-            return new Promise((resolve, reject) => {
+            return{
 
-                resolve({
+                
                     message: "Login success",
-                    data: {
+                
                        
                         firstname: findUser.data.firstname,
                         lastname: findUser.data.lastname,
                         email: findUser.data.email,
                         createdAt: findUser.data.createdAt,
                     
-                    },
+                    
                     success: "",
                     status: 200
-                })
+                    }
+                }
 
-            })
-        }
-        else {
-            return new Promise((resolve, reject) => {   // why again creating new promis?
+            
+            }
+        else 
+            return new Promise((resolve, reject) => { 
                 reject({
-                    statusCode: 200,
+                    statusCode: 400,
                     name: "Error",
                     message: "invalid password",
                     code: "LOGIN_FAILED"
                 })
 
             })
-        }
-    }
-    else return findUser;
+
+
+     return findUser;
 }
 }
 

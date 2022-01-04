@@ -20,7 +20,7 @@ class UserModel {
         return new Promise((resolve, reject) => {
             User.find({ email: req.email })
                 .then((data) => {
-                    console.log(data,"hh");
+                   
                     if (data.length>0) {
                         (response.success = true),
                             (response.data = data),

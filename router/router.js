@@ -5,7 +5,8 @@ const {validate}=require('../middleware/userValidation');
 const router=express.Router();
 
 router.post("/register",controller.Register);
- router.post("/login",controller.loginUser)
+ router.post("/login",controller.loginUser);
 // addnotes
 
+// router.post("/addNote", NotesController.addNotes);
 module.exports=router;
