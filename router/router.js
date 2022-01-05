@@ -1,12 +1,17 @@
 const express=require('express');
-// const usercontroller = require('../controller/usercontroller');
+//const usercontroller = require('../controller/usercontroller');
 let controller=require('../controller/usercontroller');
 const {validate}=require('../middleware/userValidation');
+const auth=require('../middleware/authenticate');
+const notesController=require('../controller/notescontroller');
+// const {authenticate}=require('../middleware/authenticate');
 const router=express.Router();
 
 router.post("/register",controller.Register);
  router.post("/login",controller.loginUser);
 // addnotes
 
-// router.post("/addNote", NotesController.addNotes);
+router.post("/addNotes", auth, notesController.addNotes);
+router.get("/getNotes", auth, notesController.getNotes);
+
 module.exports=router;

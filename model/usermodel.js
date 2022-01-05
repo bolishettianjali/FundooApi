@@ -46,7 +46,7 @@ class UserModel {
         });
     }
     registerModel(obj) {
-        let response = {
+        var response = {
             sucess: true,
             message: '',
             data: ''
