@@ -1,6 +1,6 @@
 
 const noteService=require('../service/noteService');
-console.log(noteService,"gt");
+//console.log(noteService,"gt");
 
 class NoteController{
     async addNotes(req,res){
@@ -17,8 +17,24 @@ class NoteController{
         await noteService.getNoteService(req.body).then((result) => {
             res.status(200).json(result)
         }).catch((err => {
-            logger.error("Error in get notes")
+            console.log("Error in get notes")
             return res.status(400).send(err);
+        }))
+    }
+    async deleteNotes(req,res){
+        await noteService.deleteNoteService(req.body)
+        .then((result)=>{
+            res.status(200).json(result)
+        }).catch((err =>{
+           return res.status(400).send(err);
+        }))
+    }
+    async isArchievedNotes(req,res){
+        await noteService.isArchievedService(req.body)
+        .then((result)=>{
+            res.status(200).json(result)
+        }).catch((err =>{
+          return  res.status(400).send(err);
         }))
     }
 }

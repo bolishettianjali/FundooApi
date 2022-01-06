@@ -13,5 +13,7 @@ router.post("/register",controller.Register);
 
 router.post("/addNotes", auth, notesController.addNotes);
 router.get("/getNotes", auth, notesController.getNotes);
+router.get("/deleteNotes", auth, notesController.deleteNotes);
+router.get("/archiveNotes", auth, notesController.deleteNotes);
 
 module.exports=router;

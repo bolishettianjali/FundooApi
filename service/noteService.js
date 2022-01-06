@@ -26,5 +26,21 @@ async getNoteService(req,res){
       return foundNote;
   }
    }
-}
+
+   async deleteNoteService(req,res){
+    var foundNote =await NotesModel.findNotes({userid:req.data.id,isDeleted:true});
+      if(foundNote){
+          return foundNote;
+      }
+      }
+      async isArchievedService(req,res){
+        var foundNote =await NotesModel.findNotes({userid:req.data.id,isDeleted:true});
+          if(foundNote){
+              return foundNote;
+          }
+          }
+ }
+ 
+ 
+
 module.exports=new NoteService();
